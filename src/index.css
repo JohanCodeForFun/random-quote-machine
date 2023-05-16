@@ -1,0 +1,50 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: palevioletred;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#quote-box {
+  border-radius: 1rem;
+  max-width: 320px;
+  background-color: white;
+  padding: 1rem;
+}
+
+#text {
+  border-radius: 1rem;
+  border: 1px solid red;
+}
+
+#text > h3 {
+  text-align: center;
+}
+
+#author {
+  padding-right: .5rem;
+  text-align: right;
+}
+
+#button-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 .5rem;
+}
+
+#tweet-quote,
+#new-quote {
+  background-color: rgb(101, 140, 0);
+  color: white;
+  border-style: none;
+  border-radius: .5rem;
+  padding: .3rem .8rem;
+}
+
+#created-box {
+  text-align: center;
+  color: white;
+}
