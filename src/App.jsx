@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <div id="quote-box">
-        <QuoteComponent />
+        <QuoteComponent author="Johan" text="Hellooo"/>
         <ButtonComponent />
       </div>
       <FooterComponent />
