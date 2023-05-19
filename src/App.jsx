@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import QuoteComponent from "./components/QuoteComponent";
+import ButtonComponent from "./components/ButtonComponent";
+import FooterComponent from "./components/FooterComponent";
 
 function App() {
   // Quote Garden - A REST API for quotes.
@@ -34,33 +37,6 @@ function App() {
   }, []);
 
   console.log(data);
-
-  const QuoteComponent = () => (
-    <>
-      <div id="text">
-        <h3>
-          &quot; Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-          molestias quas obcaecati deleniti? &quot;
-        </h3>
-      </div>
-      <div id="author">
-        <p>- author</p>
-      </div>
-    </>
-  );
-
-  const ButtonComponent = () => (
-      <div id="button-box">
-        <button id="tweet-quote">tweet</button>
-        <button id="new-quote">new qoute</button>
-      </div>
-  );
-
-  const FooterComponent = () => (
-    <div id="created-box">
-      <p>by Johan</p>
-    </div>
-  )
 
   return (
     <>
