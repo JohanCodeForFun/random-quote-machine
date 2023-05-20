@@ -1,12 +1,19 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useRef, useState } from "react";
 
-const QuoteComponent = (props) => {
+const QuoteComponent = () => {
   // Quote Garden - A REST API for quotes.
   const API_ENDPOINT = "https://quote-garden.onrender.com/api/v3/quotes";
 
   const [qouteData, setData] = useState(null);
+  const [index, setIndex] = useState(0)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  let qouteLength = useRef(0);
+
+  const getRandomQoute = () => {
+    setIndex(Math.floor(Math.random() * (qouteLength.current - 0) + 0))
+  }
 
   useEffect(() => {
     const fetchQouteData = async () => {
@@ -15,7 +22,9 @@ const QuoteComponent = (props) => {
       try {
         const responseJson = await response.json();
         const data = responseJson.data;
+        qouteLength.current = data.length
         setData(data);
+
       } catch (err) {
         console.error(err);
       }
@@ -24,47 +33,19 @@ const QuoteComponent = (props) => {
     fetchQouteData();
   }, []);
 
-  console.log(qouteData);
-
-  const list = [
-    {
-      title: "React",
-      url: "https://reactjs.org/",
-      author: "Jordan Walke",
-    },
-    {
-      title: "Vue",
-      url: "https://vuejs.org",
-      author: "Evan You",
-    },
-    {
-      title: "Angular",
-      url: "https://angular.io",
-      author: "team of engineers...",
-    },
-  ];
-
   return (
     <>
       <div id="text">
-        <h3>
-          <p>
-            {props.author}, {props.text}
-          </p>
-          &quot; Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-          molestias quas obcaecati deleniti? &quot;
-        </h3>
-        <ul>{list.map((item) => (
-          <li key={item.title}>{item.title}</li>
-        ))}</ul>
-        {/* {qouteData.map(qoute => {
-        return (
-          <li key={qoute._id}>{qoute.qouteText}</li>
-        )
-      })} */}
+        <h3>&quot;{qouteData ? qouteData[index].quoteText : null}&quot;</h3>
       </div>
       <div id="author">
-        <p>- author</p>
+        <p>- {qouteData ? qouteData[index].quoteAuthor : null}</p>
+      </div>
+      <div id="button-box">
+        <a href="twitter.com/intent/tweet" id="tweet-quote">
+          <button className="btn">tweet</button>
+        </a>
+        <button className="btn" id="new-quote" onClick={getRandomQoute}>new qoute</button>
       </div>
     </>
   );
