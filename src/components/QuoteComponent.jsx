@@ -1,4 +1,4 @@
-import { React, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const QuoteComponent = () => {
   // Quote Garden - A REST API for quotes.
@@ -6,16 +6,16 @@ const QuoteComponent = () => {
 
   const [qouteData, setData] = useState(null);
   const [index, setIndex] = useState(0)
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   let qouteLength = useRef(0);
+  let tweetUrl = "twitter.com/intent/tweet"
 
   const getRandomQoute = () => {
     setIndex(Math.floor(Math.random() * (qouteLength.current - 0) + 0))
   }
 
   useEffect(() => {
+
     const fetchQouteData = async () => {
       const response = await fetch(API_ENDPOINT);
 
@@ -36,15 +36,18 @@ const QuoteComponent = () => {
   return (
     <>
       <div id="text">
-        <h3>&quot;{qouteData ? qouteData[index].quoteText : null}&quot;</h3>
+        <h3>&quot;{qouteData ? qouteData[index].quoteText : "Loading random quote..."}&quot;</h3>
       </div>
       <div id="author">
-        <p>- {qouteData ? qouteData[index].quoteAuthor : null}</p>
+        <p>- {qouteData ? qouteData[index].quoteAuthor : "Loading author..."}</p>
       </div>
       <div id="button-box">
-        <a href="twitter.com/intent/tweet" id="tweet-quote">
+      {qouteData ? <a href={tweetUrl+qouteData[index].quoteText} target="_blank" rel="noreferrer" id="tweet-quote">
+      <button className="btn">tweet</button>
+      </a> 
+      : <a href="" id="tweet-quote">
           <button className="btn">tweet</button>
-        </a>
+        </a> }
         <button className="btn" id="new-quote" onClick={getRandomQoute}>new qoute</button>
       </div>
     </>
