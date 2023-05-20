@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { React } from "react";
 import "./App.css";
 import QuoteComponent from "./components/QuoteComponent";
 import ButtonComponent from "./components/ButtonComponent";
@@ -9,8 +9,7 @@ function App() {
   return (
     <>
       <div id="quote-box">
-        <QuoteComponent  author="Johan" text="Hellooo" />
-        <ButtonComponent />
+        <QuoteComponent />
       </div>
       <FooterComponent />
     </>
