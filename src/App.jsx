@@ -1,4 +1,3 @@
-import { React } from "react";
 import "./App.css";
 import QuoteComponent from "./components/QuoteComponent";
 import FooterComponent from "./components/FooterComponent";
