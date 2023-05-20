@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: palevioletred;
+  background-color: #0077B6;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,6 +10,7 @@ body {
 }
 #quote-box {
   border-radius: 1rem;
+  min-width: 320px;
   max-width: 320px;
   background-color: white;
   padding: 1rem;
@@ -17,11 +18,13 @@ body {
 
 #text {
   border-radius: 1rem;
-  border: 1px solid red;
+
+  border: 1px solid #00B4D8;
 }
 
 #text > h3 {
   text-align: center;
+  padding: 0 .5rem;
 }
 
 #author {
@@ -35,16 +38,18 @@ body {
   padding: 0 .5rem;
 }
 
-#tweet-quote,
-#new-quote {
-  background-color: rgb(101, 140, 0);
-  color: white;
-  border-style: none;
+.btn {
+  background-color: #90E0EF;
+  border: 1px solid #00B4D8;
   border-radius: .5rem;
   padding: .3rem .8rem;
 }
 
 #created-box {
   text-align: center;
+  color: white;
+}
+
+a {
   color: white;
 }
