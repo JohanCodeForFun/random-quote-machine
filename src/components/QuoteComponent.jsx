@@ -4,27 +4,25 @@ const QuoteComponent = () => {
   // Quote Garden - A REST API for quotes.
   const API_ENDPOINT = "https://quote-garden.onrender.com/api/v3/quotes";
 
-  const [qouteData, setData] = useState(null);
-  const [index, setIndex] = useState(0)
+  const [quoteData, setData] = useState(null);
+  const [index, setIndex] = useState(0);
 
-  let qouteLength = useRef(0);
-  let tweetUrl = "twitter.com/intent/tweet"
+  let quoteLength = useRef(0);
+  let tweetUrl = "https://twitter.com/intent/tweet?hashtags=quotes&text=%22";
 
-  const getRandomQoute = () => {
-    setIndex(Math.floor(Math.random() * (qouteLength.current - 0) + 0))
-  }
+  const getRandomQuote = () => {
+    setIndex(Math.floor(Math.random() * quoteLength.current));
+  };
 
   useEffect(() => {
-
     const fetchQouteData = async () => {
       const response = await fetch(API_ENDPOINT);
 
       try {
         const responseJson = await response.json();
         const data = responseJson.data;
-        qouteLength.current = data.length
+        quoteLength.current = data.length;
         setData(data);
-
       } catch (err) {
         console.error(err);
       }
@@ -36,19 +34,38 @@ const QuoteComponent = () => {
   return (
     <>
       <div id="text">
-        <h3>&quot;{qouteData ? qouteData[index].quoteText : "Loading random quote..."}&quot;</h3>
+        <h3>
+          &quot;
+          {quoteData ? quoteData[index].quoteText : "Loading random quote..."}
+          &quot;
+        </h3>
       </div>
       <div id="author">
-        <p>- {qouteData ? qouteData[index].quoteAuthor : "Loading author..."}</p>
+        <p>
+          - {quoteData ? quoteData[index].quoteAuthor : "Loading author..."}
+        </p>
       </div>
       <div id="button-box">
-      {qouteData ? <a href={tweetUrl+qouteData[index].quoteText} target="_blank" rel="noreferrer" id="tweet-quote">
-      <button className="btn">tweet</button>
-      </a> 
-      : <a href="" id="tweet-quote">
-          <button className="btn">tweet</button>
-        </a> }
-        <button className="btn" id="new-quote" onClick={getRandomQoute}>new qoute</button>
+        {quoteData ? (
+          <a
+            href={tweetUrl +
+              quoteData[index].quoteText.replace(/ /g, "%20") +
+              "%22" +
+              quoteData[index].quoteAuthor.replace(/ /g, "%20")}
+            target="_blank"
+            rel="noreferrer"
+            id="tweet-quote"
+          >
+            <button className="btn">tweet</button>
+          </a>
+        ) : (
+          <a href="" id="tweet-quote">
+            <button className="btn">tweet</button>
+          </a>
+        )}
+        <button className="btn" id="new-quote" onClick={getRandomQuote}>
+          new quote
+        </button>
       </div>
     </>
   );
