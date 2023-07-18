@@ -1,4 +1,4 @@
-### Random Quote Machine
+# Random Quote Machine
 Project 1 of 5 for the Frontend Librarires Certificate.
 Created with React.
 
@@ -7,6 +7,6 @@ Created with React.
 ## Random Quote Machine built with:
 - React
 
-# Homescreen
+### Homescreen
 ![Random Quote Machine](https://jhellberg.com/images/random-quote-machine.jpg "Random Quote Machine")
 
